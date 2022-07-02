@@ -1,10 +1,8 @@
 name: Validation-code-python
 
-on:
-  push:
-    branches: [master, dev]      
+on:   
   pull_request:
-    branches: [master]
+    branches: [master, dev]
 
 jobs:
   build:
