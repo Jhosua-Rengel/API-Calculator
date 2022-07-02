@@ -1,0 +1,27 @@
+name: Validation-code-python
+
+on:
+  push:
+    branches: [master, dev]      
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: actions
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v4.0.0
+        with:
+          python-version: 3.10.4
+          architecture: x64
+      - name: install pylint 
+        run: pip install pylint
+      - name: GitHub Action for pylint
+        uses: cclauss/GitHub-Action-for-pylint@0.7.0
+      - name: run pylint
+        run: pip install -r requirements.txt ; pylint *.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
